@@ -1,11 +1,10 @@
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { RootStackParamList } from '.';
-import { HeaderButton } from '../components/HeaderButton';
-import { TabBarIcon } from '../components/TabBarIcon';
-import One from '../screens/one';
-import Two from '../screens/two';
+import One from '../src/screens/one';
+import Two from '../src/screens/two';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,24 +15,40 @@ export default function TabLayout({ navigation }: Props) {
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: 'black',
-	    
       }}>
       <Tab.Screen
         name="One"
         component={One}
-        options={{
+        options={({ navigation }) => ({
           title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => <HeaderButton onPress={() => navigation.navigate('Modal')} />,
-        }}
+          tabBarIcon: ({ color }) => <Ionicons name="code" size={24} color={color} />,
+          headerRight: () => (
+            <Ionicons
+              name="reorder-three-outline"
+              size={24}
+              color="black"
+              style={{ marginRight: 10 }}
+              onPress={() => navigation.navigate('Modal')}
+            />
+          ),
+        })}
       />
       <Tab.Screen
         name="Two"
         component={Two}
-        options={{
+        options={({ navigation }) => ({
           title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
+          tabBarIcon: ({ color }) => <Ionicons name="code" size={24} color={color} />,
+          headerRight: () => (
+            <Ionicons
+              name="reorder-three-outline"
+              size={24}
+              color="black"
+              style={{ marginRight: 10 }}
+              onPress={() => navigation.navigate('Modal')}
+            />
+          ),
+        })}
       />
     </Tab.Navigator>
   );

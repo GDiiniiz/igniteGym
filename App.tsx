@@ -1,15 +1,14 @@
-
+import 'react-native-gesture-handler';
 import './global.css';
 
+import RootStack from './navigation';
 
-
-import "react-native-gesture-handler";
-
-
-import RootStack from "./navigation";
+import { AuthProvider } from '~/contexts/auth-context';
 
 export default function App() {
-	 
-		return <RootStack />;
-	
+  return (
+    <AuthProvider>
+      <RootStack />
+    </AuthProvider>
+  );
 }
