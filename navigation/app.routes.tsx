@@ -1,13 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useNavigation, useRoute } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import InfoExercise from '../src/screens/private/infoExercise';
-import One from '../src/screens/private/one';
-import Three from '../src/screens/private/three';
-import Two from '../src/screens/private/two';
+import TabThreeScreen from '../src/screens/private/Account/three';
+import HistoryExercise from '../src/screens/private/History/two';
+import { Home } from '../src/screens/private/Home';
 
 const { Screen: TabScreen, Navigator: TabNavigator } = createBottomTabNavigator();
 const { Screen: StackScreen, Navigator: StackNavigator } = createStackNavigator();
@@ -17,6 +15,8 @@ const TabIcon: React.FC<{ name: string }> = ({ name }) => {
 };
 
 export function AppRoutes() {
+  const { Screen: TabScreen, Navigator: TabNavigator } = createBottomTabNavigator();
+
   return (
     <TabNavigator
       screenOptions={{
@@ -32,7 +32,7 @@ export function AppRoutes() {
       }}>
       <TabScreen
         name="Home"
-        component={One}
+        component={Home}
         options={{
           unmountOnBlur: true,
           tabBarIcon: () => <TabIcon name="home-outline" />,
@@ -42,7 +42,7 @@ export function AppRoutes() {
 
       <TabScreen
         name="History"
-        component={Two}
+        component={HistoryExercise}
         options={{
           unmountOnBlur: true,
           tabBarIcon: () => <TabIcon name="sync-circle-outline" />,
@@ -52,40 +52,13 @@ export function AppRoutes() {
 
       <TabScreen
         name="Account"
-        component={Three}
+        component={TabThreeScreen}
         options={{
           unmountOnBlur: true,
           tabBarIcon: () => <TabIcon name="person-circle-outline" />,
           tabBarLabel: () => null,
         }}
       />
-
-      <TabScreen
-        name="InformationScreen"
-        component={StackNavigatorComponent}
-        options={{
-          headerShown: false,
-          tabBarLabel: () => null,
-          tabBarVisible: false,
-        }}
-      />
     </TabNavigator>
-  );
-}
-
-function StackNavigatorComponent() {
-  const route = useRoute();
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    const params = { ...route.params };
-    delete params.route;
-    navigation.navigate(route.params.route, params);
-  }, [route?.params]);
-
-  return (
-    <StackNavigator>
-      <StackScreen name="Informations" component={InfoExercise} options={{ headerShown: false }} />
-    </StackNavigator>
   );
 }

@@ -1,9 +1,10 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+
 import { ButtonSend } from '~/components/buttons/buttonSend';
 import { Header } from '~/components/headers';
 import { InputForm } from '~/components/input';
 
-export default function TabTwoScreen() {
+export default function TabThreeScreen() {
   return (
     <View style={{ backgroundColor: '#000', flex: 1 }}>
       <Header title="Perfil" />

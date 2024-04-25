@@ -60,7 +60,7 @@ export default function TabOneScreen({ backToSignIn }: HomeProps) {
 
   const goToInfoExercise = (index: number) => {
     const exercise = exerciseInformation[index];
-    navigation.navigate('InformationScreen', { exercise, route: 'Informations' });
+    navigation.navigate('Information', { exercise, route: 'Informations' });
   };
 
   const renderItemMuscle = ({ item }: any) => (
